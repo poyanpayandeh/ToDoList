@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
 import Task from './components/Task';
 
 export default function App() {
@@ -25,29 +25,32 @@ export default function App() {
     <View style={styles.container}>
   
       {/* Todays's Tasks */}
-      <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>To Do List!</Text>
+      <ScrollView contentContainerStyle={{flexGrow: 1}} keyboardShouldPersistTaps='handled' style={{ marginBottom: 125}}>
+        <View style={styles.tasksWrapper}>
+          <Text style={styles.sectionTitle}>To Do List!</Text>
 
-        <View style={styles.items}>
-          {/* This is where the tasks will go */}
-          {
-            taskItems.map((item, index) => {
-              return(
-              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item}></Task>
-              </TouchableOpacity>
-              )
-            })
-          }
+          <View style={styles.items}>
+            {/* This is where the tasks will go */}
+            {
+              taskItems.map((item, index) => {
+                return(
+                  <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+                  <Task text={item}></Task>
+                </TouchableOpacity>
+                )
+              })
+            }
+          </View>
         </View>
-
-      </View>
+      </ScrollView>
 
       {/* Write a task */}
       <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.writeTaskWrapper}>
         <TextInput style={styles.input} placeholder={'Enter task'} value={task} onChangeText={text => setTask(text)}></TextInput>
+
+        <View style={styles.scrollBG}></View>
 
         <TouchableOpacity onPress={() => handleAddTask()}>
           <View style={styles.addWrapper}>
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
 
   writeTaskWrapper: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 45,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: '#C0C0C0'
+    borderColor: '#C0C0C0',
     
   },
 
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#C0C0C0'
+    borderColor: '#C0C0C0',
   },
 
   addText: {

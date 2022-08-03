@@ -6,7 +6,8 @@ export default function App() {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
 
-  {/*Deleted task entry*/}
+    {/*Deleted task entry*/ }
+    /*i luv babi*/
   const completeTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);

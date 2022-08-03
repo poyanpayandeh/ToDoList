@@ -21,6 +21,7 @@ export default function App() {
   }
   /*i luv babi*/
   /*i luv babi2*/
+  /*i luv babi3*/
   const completeTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
